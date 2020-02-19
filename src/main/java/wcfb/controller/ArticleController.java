@@ -92,4 +92,14 @@ public class ArticleController {
     public RespondResult aside(@PathVariable("id") String id){
         return articleService.aside(id);
     }
+
+    /**
+     * 搜索文章
+     * @param title
+     * @return
+     */
+    @RequestMapping("/search/{title}")
+    public RespondResult search(@PathVariable("title") String title){
+        return articleService.search(title);
+    }
 }

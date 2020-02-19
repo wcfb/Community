@@ -6,7 +6,7 @@ import lombok.Data;
 public final class ArticleConstant {
 
     //推荐文章的数量
-    public final static int articleNum = 10;
+    public final static int articleNum = 20;
 
     //文章封面最多显示的文字数量
     public final static int articleShowMaxWord = 100;

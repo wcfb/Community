@@ -35,13 +35,10 @@ new Vue({
                 }
             })
         },
-        follow(){
-            this.followVisible = false
-            this.settingVisible = true
+        followAuthor(){
+            follow(this.getUser());
         },
         setting(){
-            this.followVisible = true
-            this.settingVisible = false
             setUrl('setting.html')
         },
         //根据url得到账号
@@ -84,4 +81,21 @@ new Vue({
  */
 function setUrl(contentUrl) {
     window.location.href=contentUrl
+}
+
+/**
+ * 关注博主
+ * @param account
+ */
+function follow(account) {
+    confirmLogin()
+    axios.post('http://localhost:8080/author/followAuthor', {
+        'author': account
+    }).then(response => {
+        if (response.data.code == 200) {
+            var vue = new Vue()
+            vue.$message.closeAll()
+            vue.$message({showClose: true, message: '关注成功', type: 'success', offset: 50});
+        }
+    })
 }

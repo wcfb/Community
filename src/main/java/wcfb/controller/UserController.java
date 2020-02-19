@@ -116,4 +116,14 @@ public class UserController {
     public RespondResult set(@RequestBody UserDataBo userDataBo, HttpServletRequest request){
         return userServer.set(userDataBo, request);
     }
+
+    /**
+     * 获取个人用户资料
+     * @param request
+     * @return
+     */
+    @PostMapping("/getUserData")
+    public RespondResult getUserData(HttpServletRequest request){
+        return userServer.getUserData(request);
+    }
 }

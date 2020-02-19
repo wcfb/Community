@@ -303,4 +303,22 @@ public class ArticleService {
         });
         return RespondResult.success(articleAsideVoList);
     }
+
+    /**
+     * 搜索文章
+     * @param title
+     * @return
+     */
+    public RespondResult search(String title) {
+        int current = new Random().nextInt(getPage());
+        IPage<ArticlePo> articlePoIPage = new Page<>(current + 1, articleNum);
+        Wrapper<ArticlePo> queryWrapper = new QueryWrapper<ArticlePo>()
+                .lambda()
+                .like(ArticlePo::getTitle, title)
+                .or().like(ArticlePo::getContent, title)
+                .orderByDesc(ArticlePo::getId);
+        articleMapper.selectPage(articlePoIPage, queryWrapper);
+        List<ArticlePo> list = articlePoIPage.getRecords();
+        return RespondResult.success(list);
+    }
 }

@@ -27,8 +27,9 @@ public class TokenInterceptor implements HandlerInterceptor {
     private static final String AUTH_PATH24 = "/user/changePassword";
     private static final String AUTH_PATH3 = "/article/find";
     private static final String AUTH_PATH31 = "/article/info";
-    private static final String AUTH_PATH33 = "/article/aside";
     private static final String AUTH_PATH32 = "/article/comments";
+    private static final String AUTH_PATH33 = "/article/aside";
+    private static final String AUTH_PATH34 = "/article/search";
     private static final String AUTH_PATH4 = "/author/find";
     private static final String AUTH_PATH41 = "/author/info";
     private static final String AUTH_PATH5 = "/css";
@@ -68,7 +69,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         if (uri.contains(AUTH_PATH1) || uri.contains(AUTH_PATH2) || uri.contains(AUTH_PATH21) ||
                 uri.contains(AUTH_PATH22) || uri.contains(AUTH_PATH23) || uri.contains(AUTH_PATH24) ||
                 uri.contains(AUTH_PATH3) || uri.contains(AUTH_PATH31) || uri.contains(AUTH_PATH32) ||
-                uri.contains(AUTH_PATH33) ||
+                uri.contains(AUTH_PATH33) ||uri.contains(AUTH_PATH34) ||
                 uri.contains(AUTH_PATH4) || uri.contains(AUTH_PATH41) ||
                 uri.contains(AUTH_PATH5) ||
                 uri.contains(AUTH_PATH6) || uri.contains(AUTH_PATH7) || uri.contains(AUTH_PATH8) ||

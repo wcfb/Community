@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>关注</title>
+    <title>发现</title>
     <link rel="stylesheet" href="./css/element/element.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/find.css">
@@ -11,9 +11,10 @@
     <script src="./js/vue/vue.js"></script>
     <script src="./js/element/element.js"></script>
     <script src="./js/axios/axios.js"></script>
+    <script src="./js/jquery/jquery.min.js"></script>
     <script src="./js/utils/axiosUtil.js"></script>
     <script src="./js/utils/common.js"></script>
-    <script src="./js/follow.js"></script>
+    <script src="./js/search.js"></script>
 </head>
 <body>
 <div id="app">
@@ -34,7 +35,7 @@
                 <div id="aside" class="recommended-authors">
                     <div class="title">
                         <span>推荐作者</span>
-                        <a class="page-change">
+                        <a class="page-change" @click="loadAuthor">
                             <i class="iconfont ic-search-change" style="transform: rotate(0deg);"></i>
                             换一批
                         </a>
@@ -47,5 +48,5 @@
     </el-container>
 </div>
 </body>
-<script src="./js/follow.js"></script>
+<script src="./js/search.js"></script>
 </html>

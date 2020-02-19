@@ -21,7 +21,7 @@ new Vue({
             }
         },
         search() {
-            console.log(this.input);
+            this.setIframe('search.html?' + this.input)
         },
         head() {
             confirm()

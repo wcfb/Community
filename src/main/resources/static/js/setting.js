@@ -3,15 +3,27 @@ new Vue({
     data() {
         return {
             radio : 0,
-            email: '59***@qq.com',
-            phone: '173****0704',
+            email: '',
+            phone: '',
             head: '',
             name: '',
         }
     },
+    mounted (){
+      this.load()
+    },
     methods : {
         submit () {
             saveImg(this)
+        },
+        //加载初始信息
+        load(){
+            var vue = this
+            axios.post('http://localhost:8080/user/getUserData', {})
+                .then(function (responce) {
+                    vue.email = responce.data.data.email
+                    vue.phone = responce.data.data.phone
+                })
         }
     }
 })

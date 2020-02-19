@@ -40,6 +40,12 @@ new Vue({
             });
         },
         addArticle(articleList){
+            if(articleList == null || articleList.length == 0){
+                var vue = new Vue();
+                vue.$message.closeAll()
+                vue.$message('您关注的人没有写任何文章偶')
+                return;
+            }
             var innerHTML = "";
             for (var i=0;i<articleList.length;i++) {
                 if (articleList[i].cover == null || articleList[i].cover == ''){

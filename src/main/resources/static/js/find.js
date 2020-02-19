@@ -67,6 +67,7 @@ new Vue({
             }
             document.getElementById("articleList").innerHTML += innerHTML
         },
+        //添加推荐的作者
         addAuthor(author) {
             var innerHTML = "";
             for (var i = 0; i < author.length; i++) {

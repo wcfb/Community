@@ -1,5 +1,6 @@
 package wcfb.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import wcfb.model.po.TokenPo;
 import wcfb.model.po.UserPo;
 import wcfb.model.po.UserdataPo;
 import wcfb.model.pojo.EmailPojo;
+import wcfb.model.vo.UserDataVo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -272,5 +274,27 @@ public class UserServer {
         userdataPo.setSex(userDataBo.getSex());
         userdataMapper.updateById(userdataPo);
         return RespondResult.success();
+    }
+
+    /**
+     * 获取个人用户资料
+     * @param request
+     * @return
+     */
+    public RespondResult getUserData(HttpServletRequest request) {
+        TokenPo token = userUtil.getToken(request);
+        if (token == null) {
+            return RespondResult.success();
+        }
+        UserPo userPo = userMapper.selectOne(
+                new QueryWrapper<UserPo>().lambda().eq(UserPo::getAccount, token.getAccount()));
+        UserDataVo userDataVo = new UserDataVo();
+        String email = userPo.getEmail();
+        email = email.substring(0,2) + "****" + email.substring(email.indexOf("@"));
+        userDataVo.setEmail(email);
+        String phone = userPo.getPhone();
+        phone = phone.substring(0,3) + "****" + phone.substring(7);
+        userDataVo.setPhone(phone);
+        return RespondResult.success(userDataVo);
     }
 }

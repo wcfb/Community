@@ -1,22 +1,18 @@
 new Vue({
     el: "#app",
-    data () {
-        return {
-        }
+    data() {
+        return {}
     },
-    mounted(){
-        //确认登录
-        confirm()
+    created() {
         this.loadArticle()
         this.loadAuthor()
     },
     methods: {
-        loadArticle(){
+        loadArticle() {
             var vue = this
             //推荐文章
-            axios.post('http://localhost:8080/article/follow', {
-            }).then(function (responce) {
-                if (responce.data.code == 200){
+            axios.post('http://localhost:8080/article/search/' + this.getArticle(), {}).then(function (responce) {
+                if (responce.data.code == 200) {
                     vue.addArticle(responce.data.data)
                 } else {
                     vue.$message.error(responce.data.value)
@@ -25,6 +21,12 @@ new Vue({
                 console.log(error);
             });
 
+        },
+        //根据url得到账号
+        getArticle() {
+            //获取url中"?"符后的字串
+            var url = location.search;
+            return url.substr(1)
         },
         loadAuthor() {
             var vue = this
@@ -39,63 +41,57 @@ new Vue({
                 console.log(error);
             });
         },
-        addArticle(articleList){
+        addArticle(articleList) {
             var innerHTML = "";
-            for (var i=0;i<articleList.length;i++) {
-                if (articleList[i].cover == null || articleList[i].cover == ''){
+            for (var i = 0; i < articleList.length; i++) {
+                if (articleList[i].cover == null || articleList[i].cover == '') {
                     innerHTML +=
                         "<li id=\"\" data-note-id=\"\">\n";
                 } else {
                     innerHTML +=
                         "<li id=\"\" data-note-id=\"\" class=\"have-img\">\n" +
                         "   <a class=\"wrap-img\">\n" +
-                        "       <img class=\"  img-blur-done\" src=\""+articleList[i].cover+"\" alt=\"120\">\n" +
+                        "       <img class=\"  img-blur-done\" src=\"" + articleList[i].cover + "\" alt=\"120\">\n" +
                         "   </a>\n";
                 }
                 innerHTML +=
                     "   <div class=\"content\">\n" +
-                    "       <a class=\"title\" target=\"\" href=\"http://localhost:8080/articleShow.html?"+articleList[i].id+"\">"+articleList[i].title+"</a>\n" +
+                    "       <a class=\"title\" target=\"\" href=\"http://localhost:8080/articleShow.html?" + articleList[i].id + "\">" + articleList[i].title + "</a>\n" +
                     "       <p class=\"abstract\">\n" + articleList[i].content +
                     "       </p>\n" +
                     "   <div class=\"meta\">\n" +
                     "       <span class=\"jsd-meta\">" +
-                    "           <i class=\"iconfont ic-list-read\"></i> "+articleList[i].look+"</span>\n" +
-                    "       <a class=\"nickname\">"+articleList[i].authorName+"</a>\n" +
+                    "           <i class=\"iconfont ic-list-read\"></i> " + articleList[i].look + "</span>\n" +
+                    "       <a class=\"nickname\">" + articleList[i].authorName + "</a>\n" +
                     "       <a>\n" +
-                    "           <i class=\"iconfont ic-list-comments\"></i> "+articleList[i].comment+"\n" +
+                    "           <i class=\"iconfont ic-list-comments\"></i> " + articleList[i].comment + "\n" +
                     "       </a>     \n" +
-                    "       <span><i class=\"iconfont ic-list-like\"></i> "+articleList[i].liked+"</span>\n" +
+                    "       <span><i class=\"iconfont ic-list-like\"></i> " + articleList[i].liked + "</span>\n" +
                     "       </div>\n" +
                     "   </div>\n" +
                     "</li>";
             }
-            document.getElementById("articleList").innerHTML+=innerHTML
+            document.getElementById("articleList").innerHTML += innerHTML
         },
-        addAuthor(author){
+        //添加推荐的作者
+        addAuthor(author) {
             var innerHTML = "";
-            for (var i=0;i<author.length;i++) {
+            for (var i = 0; i < author.length; i++) {
                 innerHTML +=
                     "<li>\n" +
-                    "   <a href=\"http://localhost:8080/user.html?"+author[i].account+"\" class=\"avatar\">" +
-                    "       <img src=\""+author[i].head+"\">" +
+                    "   <a href=\"http://localhost:8080/user.html?" + author[i].account + "\" class=\"avatar\">" +
+                    "       <img src=\"" + author[i].head + "\">" +
                     "   </a>\n" +
                     "   <a onclick='follow(" + author[i].account + ")' class=\"follow\" state=\"0\">" +
                     "       <i class=\"iconfont ic-follow\"></i>关注</a>\n" +
-                    "   <a href=\"http://localhost:8080/user.html?"+author[i].account+"\" class=\"name\">"+author[i].name+"</a>\n" +
-                    "   <p>写了"+author[i].word+"字 · "+author[i].liked+"喜欢</p>\n" +
+                    "   <a href=\"http://localhost:8080/user.html?" + author[i].account + "\" class=\"name\">" + author[i].name + "</a>\n" +
+                    "   <p>写了" + author[i].word + "字 · " + author[i].liked + "喜欢</p>\n" +
                     "</li>";
             }
-            document.getElementById("authorList").innerHTML=innerHTML
+            document.getElementById("authorList").innerHTML = innerHTML
         }
     }
 })
-
-/**
- * 确认登录
- */
-function confirm() {
-    confirmLogin()
-}
 
 /**
  * 关注博主

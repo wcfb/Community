@@ -95,6 +95,9 @@ public class AuthorService {
             account = tokenPo.getAccount();
             authorDataVo.setSettingVisible(true);
             authorDataVo.setFollowVisible(false);
+        } else {
+            authorDataVo.setSettingVisible(false);
+            authorDataVo.setFollowVisible(true);
         }
         //根据账号查找用户信息
         UserdataPo userdataPo = userdataMapper.selectOne(
