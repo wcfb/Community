@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wcfb.mapper.TokenMapper">
+
+    <delete id="clean">
+        delete from token where expire &lt; #{expire}
+    </delete>
+
+    <select id="selectByAccount" resultType="wcfb.model.po.TokenPo">
+        select account, token, expire from token where account = #{account}
+    </select>
+
+    <select id="selectByToken" resultType="wcfb.model.po.TokenPo">
+        select account, token, expire from token where token = #{token}
+    </select>
+
+    <insert id="insert" parameterType="wcfb.model.po.TokenPo">
+        insert into token (account, token, expire) values (#{account}, #{token}, #{expire})
+    </insert>
+
+    <update id="updateByAccount" parameterType="wcfb.model.po.TokenPo">
+        update token set token = #{token}, expire = #{expire} where account = #{account}
+    </update>
+</mapper>

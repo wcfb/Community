@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wcfb.mapper.LikesMapper">
+
+
+    <select id="selectLikesByAuthor" resultType="wcfb.model.vo.MessageLikesVo"
+            parameterType="java.lang.String">
+        select l.article_id as id, a.title as article, ud.head, ud.name, l.create_time as time
+        from likes as l left join userdata as ud
+        on l.likes_id = ud.account
+        left join article as a
+        on l.article_id = a.id
+        where l.author_id = #{author}
+        order by l.create_time
+    </select>
+
+</mapper>

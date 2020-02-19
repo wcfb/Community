@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>粉笔社区</title>
+    <link rel="stylesheet" href="./css/element/element.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/community.css">
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/element/element.js"></script>
+    <script src="./js/axios/axios.js"></script>
+    <script src="./js/community.js"></script>
+    <script src="./js/utils/axiosUtil.js"></script>
+</head>
+<body>
+<div id="app">
+    <el-menu id="menu" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
+             text-color="#000" active-text-color="#ffd04b">
+        <span id="title">粉笔社区</span>
+        <el-menu-item index="1"><h2>发现</h2></el-menu-item>
+        <el-menu-item index="2"><h2>关注</h2></el-menu-item>
+        <el-menu-item index="3"><h2>消息</h2></el-menu-item>
+        <el-input id="search" v-model="input" placeholder="搜索">
+            <i class="el-icon-search el-input__icon" slot="suffix" @click="search"></i>
+        </el-input >
+        <divv @click="head">
+            <el-avatar id="head" :size="50" icon="el-icon-user-solid" :src="headUrl"></el-avatar>
+        </divv>
+        <el-button id="write" type="success" round @click="write">写文章</el-button>
+    </el-menu>
+    <iframe id="content" :src="contentUrl" frameborder="0"
+            v-bind:style="{ height: iframeHeight + 'px' }"></iframe>
+</div>
+</body>
+<script src="./js/utils/axiosUtil.js"></script>
+<script src="./js/community.js"></script>
+</html>

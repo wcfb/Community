@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wcfb.mapper.UserMapper">
+
+    <insert id="insert" parameterType="wcfb.model.po.UserPo">
+        insert into user (account, password, phone, email) values (#{account}, #{password}, #{phone}, #{email})
+    </insert>
+
+    <update id="update"></update>
+
+
+    <select id="loginByAccount" resultType="String">
+        select account from user
+        where account = #{account}
+        and password = #{password}
+    </select>
+
+    <select id="loginByPhone" resultType="String">
+        select account from user
+        where phone = #{phone}
+        and password = #{password}
+    </select>
+
+    <select id="loginByEmail" resultType="String">
+        select account from user
+        where email = #{email}
+        and password = #{password}
+    </select>
+
+    <select id="select" resultType="wcfb.model.po.UserPo">
+
+    </select>
+
+    <select id="selectByPhone" resultType="wcfb.model.po.UserPo">
+        select account, password, phone, email from user
+        where phone = #{phone}
+    </select>
+
+    <update id="updatePassword" parameterType="wcfb.model.po.UserPo">
+        update user set
+        password = #{password}
+        where email = #{email}
+    </update>
+
+    <select id="selectByEmail" resultType="wcfb.model.po.UserPo">
+        select account, password, phone, email from user
+        where email = #{email}
+    </select>
+
+</mapper>

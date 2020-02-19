@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>消息</title>
+
+    <link rel="stylesheet" media="all" href="./css/js/message.css">
+    <link rel="stylesheet" media="all" href="./css/js/message1.css">
+    <link rel="stylesheet" href="./css/element/element.css">
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/element/element.js"></script>
+    <script src="./js/axios/axios.js"></script>
+    <script src="./js/utils/axiosUtil.js"></script>
+    <script src="./js/utils/common.js"></script>
+    <script src="./js/message.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="container notification">
+        <div class="row">
+            <div class="aside">
+                <ul>
+                    <li class="" @click="comments">
+                        <a>
+                            <i class="iconfont ic-comments"></i>
+                            <span>评论</span>
+                        </a>
+                    </li>
+                    <li class="" @click="likes">
+                        <a>
+                            <i class="iconfont ic-likes"></i>
+                            <span>喜欢和赞</span>
+                        </a>
+                    </li>
+                    <li class="" @click="follows">
+                        <a>
+                            <i class="iconfont ic-follows"></i>
+                            <span>关注</span>
+                        </a>
+                    </li>
+                    <li class="" @click="others">
+                        <a>
+                            <i class="iconfont ic-others"></i>
+                            <span>其它提醒</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-16 col-xs-offset-8 main">
+                <div>
+                    <div class="menu">{{ messageType }}</div>
+                    <!--消息列表-->
+                    <ul id="messageList" class="comment-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./js/message.js"></script>
+</html>

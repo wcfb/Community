@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+
+    <link rel="stylesheet" href="./css/element/element.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" media="all" href="./css/js/user.css">
+    <link rel="stylesheet" media="all" href="./css/js/user1.css">
+    <link rel="stylesheet" media="all" href="./css/user.css">
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/element/element.js"></script>
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/axios/axios.js"></script>
+    <script src="./js/utils/axiosUtil.js"></script>
+    <script src="./js/utils/common.js"></script>
+    <script src="./js/user.js"></script>
+
+</head>
+<body lang="zh-CN" class="reader-song-font">
+<div id="app" class="person">
+    <el-container>
+        <el-main>
+            <div class="row">
+                <div class="col-xs-16 main" style="width: auto; margin-left: 100px; margin-right: 100px;">
+                    <div class="main-top" style="margin-left: 100px; text-align: left;">
+                        <a class="avatar" href="">
+                            <img :src="head" alt="240">
+                        </a>
+                        <div class="title">
+                            <a class="name">{{ user }}</a>
+                            <i class="iconfont ic-man"></i>
+                            <el-button id="follow" v-if="followVisible" type="success" round @click="follow">关注</el-button>
+                            <el-button id="setting" v-if="settingVisible" type="success" round @click="setting">设置</el-button>
+                        </div>
+                        <div class="info">
+                            <ul>
+                                <li>
+                                    <div class="meta-block">
+                                        <a><p>{{ follow }}</p>
+                                            关注 <i class="iconfont ic-arrow"></i>
+                                        </a></div>
+                                </li>
+                                <li>
+                                    <div class="meta-block">
+                                        <a><p>{{ fans }}</p>
+                                            粉丝 <i class="iconfont ic-arrow"></i>
+                                        </a></div>
+                                </li>
+                                <li>
+                                    <div class="meta-block">
+                                        <a><p>{{ article }}</p>
+                                            文章 <i class="iconfont ic-arrow"></i>
+                                        </a></div>
+                                </li>
+                                <li>
+                                    <div class="meta-block">
+                                        <p>{{ word }}</p>
+                                        <div>字数</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="meta-block">
+                                        <p>{{ liked }}</p>
+                                        <div>收获喜欢</div>
+                                    </div>
+                                </li>
+<!--                                <li>-->
+<!--                                    <div class="meta-block">-->
+<!--                                        <p>1</p>-->
+<!--                                        <div>总资产</div>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="list-container">
+                        <ul id="articleUl" class="note-list" infinite-scroll-url="">
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </el-main>
+    </el-container>
+</div>
+</div>
+</body>
+<script src="./js/user.js"></script>
+</html>
