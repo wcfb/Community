@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录-社区</title>
+  <link rel="stylesheet" href="./css/element/element.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <script src="./js/vue/vue.js"></script>
+  <script src="./js/element/element.js"></script>
+  <script src="./js/axios/axios.js"></script>
+  <script src="./js/utils/axiosUtil.js"></script>
+  <script src="./js/login.js"></script>
+</head>
+<body>
+<div id="app">
+  <el-col :span="8" offset="4" push="4">
+    <el-card class="box-card" shadow="always">
+      <el-tabs v-model="activeName" @tab-click="handleClick" stretch="true">
+        <el-tab-pane label="登录" name="login">
+          <el-input placeholder="请输入内容" v-model="loginAccount" clearable prefix-icon="el-icon-user" style="margin-top: 20px;"></el-input>
+          <el-input placeholder="请输入密码" v-model="loginPassword" show-password prefix-icon="el-icon-lock" style="margin-top: 10px;"></el-input>
+
+          <el-row :gutter="20" style="margin-top: 20px;">
+            <el-col :span="14" style="margin-top: 10px;">
+              <el-input v-model="captcha" placeholder="验证码"></el-input>
+            </el-col>
+            <el-col :span="10" class="login-captcha">
+              <img :src="captchaPath" @click="getCaptcha()" alt="">
+            </el-col>
+          </el-row>
+
+          <a href="http://localhost:8080/retrieve.html" target="_blank" style="float: right;">登录遇到问题?</a>
+          <el-button type="primary" round :plain="true" @click="login">登录</el-button>
+        </el-tab-pane>
+        <el-tab-pane label="注册" name="register">
+          <el-input placeholder="你的昵称" v-model="account" clearable prefix-icon="el-icon-user" style="margin-top: 20px;"></el-input>
+          <el-input placeholder="手机号" v-model="phone" clearable prefix-icon="el-icon-user" style="margin-top: 20px;"></el-input>
+          <el-input placeholder="邮箱" v-model="email" clearable prefix-icon="el-icon-s-comment" style="margin-top: 20px;"></el-input>
+          <el-input placeholder="请输入密码" v-model="registerPassword" show-password prefix-icon="el-icon-lock"  style="margin-top: 20px;"></el-input>
+          <el-button type="success" round :plain="true" @click="register">注册</el-button>
+        </el-tab-pane>
+      </el-tabs>
+    </el-card>
+  </el-col>
+</div>
+</body>
+<script src="./js/login.js"></script>
+</html>

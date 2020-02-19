@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章</title>
+    <link rel="stylesheet" href="./css/element/element.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/js/article.css">
+    <link rel="stylesheet" href="./css/js/article1.css">
+    <link rel="stylesheet" href="./css/js/article2.css">
+    <link rel="stylesheet" href="./css/js/article3.css">
+    <link rel="stylesheet" href="./css/js/article4.css">
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/element/element.js"></script>
+    <script src="./js/axios/axios.js"></script>
+    <script src="./js/community.js"></script>
+    <script src="./js/utils/axiosUtil.js"></script>
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/markdown/markdown.min.js"></script>
+    <script src="./js/articleShow.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="_21bLU4 _3kbg6I">
+        <div class="_3VRLsv" role="main">
+            <div class="_gp-ck">
+                <section class="ouvJEz"><h1 class="_1RuRku">{{ title }}</h1>
+                    <div class="rEsl9f">
+                        <div class="_2mYfmT">
+                            <a class="_1OhGeD" href="" rel="noopener noreferrer">
+                                <img class="_13D2Eh" :src="authorHead" alt="">
+                            </a>
+                            <div style="margin-left: 8px;">
+                                <div class="_3U4Smb">
+                                    <span class="FxYr8x">
+                                        <a class="_1OhGeD" href="" target="_blank" rel="noopener noreferrer">
+                                            {{ author }}
+                                        </a>
+                                    </span>
+                                    <button data-locale="zh-CN" type="button" @click="follow"
+                                            class="_3kba3h _1OyPqC _3Mi9q9 _34692-">
+                                        <span>关注</span>
+                                    </button>
+                                </div>
+                                <div class="s-dsoj">
+                                    <span>{{ time }}</span>
+                                    <span>字数 {{ word }}</span>
+                                    <span>阅读 {{ look }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <article class="_2rhmJa">
+                        <td>
+                            <div id="show-area" class="clearfix"></div>
+                        </td>
+                    </article>
+                    <div class="_1kCBjS">
+                        <div class="_18vaTa">
+                            <div class="_3BUZPB">
+                                {{ liked }}人点赞  喜欢文章
+                                <el-button type="warning" style="margin-left: 30px;"
+                                           icon="el-icon-star-off" circle @click="likeArticle"></el-button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="_19DgIp" style="margin-top:24px;margin-bottom:24px"></div>
+
+                    <div class="d0hShY">
+                        <a class="_1OhGeD" href="" target="_blank" rel="noopener noreferrer">
+                            <img class="_27NmgV" :src="authorHead" alt="  ">
+                        </a>
+                        <div class="Uz-vZq">
+                            <div class="lJvI3S">
+                                <!--                                <span>总资产13 (约1.26元)</span>-->
+                                <span>共写了 {{ wordSum }} 字</span>
+                                <span>获得 {{ likedSum }}个赞</span>
+                                <span>共 {{ fansSum }}个粉丝</span>
+                            </div>
+                        </div>
+                        <button data-locale="zh-CN" type="button" @click="follow"
+                                class="_1OyPqC _3Mi9q9">
+                            <span>关注</span>
+                        </button>
+                    </div>
+                </section>
+                <div id="note-page-comment">
+                    <section class="ouvJEz">
+                        <div class="_26JdYM">
+                            <img class="_3LHFA-" :src="head" alt="">
+                            <div class="_3GKFE3">
+                                <textarea class="_1u_H4i" v-model="comment" placeholder="写下你的评论...">
+
+                                </textarea>
+                                <div style="align-content: center; align-items: center">
+                                    <el-button type="info" size="medium" round @click="commentArticle" style="margin-top: 5px;float: right">评论</el-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="_2lR7N6" style="display: none;">
+                            <div class="_17_lFi">
+                                <div class="_3k5vgx"></div>
+                                <div>
+                                    <div class="U36Th9"></div>
+                                    <div class="_9aTHBB"></div>
+                                </div>
+                            </div>
+                            <div class="_1Lq8tt">
+
+                            </div>
+                            <div class="_1Lq8tt _1muh0x">
+
+                            </div>
+                            <div class="_3Pu4Wf">
+                                <i aria-label="ic-like" class="anticon">
+                                    <svg width="1em" height="1em" fill="currentColor" aria-hidden="true"
+                                         focusable="false" class="">
+                                        <use xlink:href="#ic-like"></use>
+                                    </svg>
+                                </i>
+                                <div class="_1mcOnW"></div>
+                                <i aria-label="ic-reply" class="anticon">
+                                    <svg width="1em" height="1em" fill="currentColor" aria-hidden="true"
+                                         focusable="false" class="">
+                                        <use xlink:href="#ic-reply"></use>
+                                    </svg>
+                                </i>
+                                <div class="_1mcOnW"></div>
+                            </div>
+                        </div>
+                        <div class="_2lR7N6" style="display: none;">
+                            <div class="_17_lFi">
+                                <div class="_3k5vgx"></div>
+                                <div>
+                                    <div class="U36Th9"></div>
+                                    <div class="_9aTHBB"></div>
+                                </div>
+                            </div>
+                            <div class="_1Lq8tt"></div>
+                            <div class="_1Lq8tt _1muh0x"></div>
+                            <div class="_3Pu4Wf">
+                                <i aria-label="ic-like" class="anticon">
+                                    <svg width="1em" height="1em" fill="currentColor" aria-hidden="true"
+                                         focusable="false" class="">
+                                        <use xlink:href="#ic-like"></use>
+                                    </svg>
+                                </i>
+                                <div class="_1mcOnW"></div>
+                                <i aria-label="ic-reply" class="anticon">
+                                    <svg width="1em" height="1em" fill="currentColor" aria-hidden="true"
+                                         focusable="false" class="">
+                                        <use xlink:href="#ic-reply"></use>
+                                    </svg>
+                                </i>
+                                <div class="_1mcOnW"></div>
+                            </div>
+                        </div>
+                        <div id="commentList" class="_2gPNSa">
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <section class="_3Z3nHf">
+                <div class="_3Oo-T1">
+                    <a class="_1OhGeD" href="" target="_blank" rel="noopener noreferrer">
+                        <img class="_3T9iJQ" :src="authorHead" alt="">
+                    </a>
+                    <div class="_32ZTTG">
+                        <div class="_2O0T_w">
+                            <div class="_2v-h3G">
+                                <span class="_2vh4fr" title="">
+                                    <a class="_1OhGeD" href="" rel="noopener noreferrer">{{ author }}</a>
+                                </span>
+                            </div>
+                            <button data-locale="zh-CN" type="button" @click="follow"
+                                    class="tzrf9N _1OyPqC _3Mi9q9 _34692-">
+                                <span>关注</span>
+                            </button>
+                        </div>
+<!--                        <div class="_1pXc22">总资产13 (约1.26元)</div>-->
+                    </div>
+                </div>
+                <div id="aside" class="_19DgIp"></div>
+
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./js/articleShow.js"></script>
+</html>

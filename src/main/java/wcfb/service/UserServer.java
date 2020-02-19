@@ -8,12 +8,14 @@ import wcfb.base.support.RespondResult;
 import wcfb.base.utils.*;
 import wcfb.common.utils.Base64Util;
 import wcfb.common.utils.Md5Util;
+import wcfb.mapper.ArticleMapper;
 import wcfb.mapper.UserMapper;
 import wcfb.mapper.UserdataMapper;
 import wcfb.model.bo.*;
 import wcfb.model.constant.CommonConstant;
 import wcfb.model.enums.LoginEnum;
 import wcfb.model.enums.RespondCodeEnum;
+import wcfb.model.po.ArticlePo;
 import wcfb.model.po.TokenPo;
 import wcfb.model.po.UserPo;
 import wcfb.model.po.UserdataPo;
@@ -48,6 +50,9 @@ public class UserServer {
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private ArticleMapper articleMapper;
 
     @Autowired
     private UserUtil userUtil;
@@ -273,6 +278,13 @@ public class UserServer {
         userdataPo.setName(userDataBo.getName());
         userdataPo.setSex(userDataBo.getSex());
         userdataMapper.updateById(userdataPo);
+
+        //修改发表文章的作者名字
+        ArticlePo articlePo = new ArticlePo();
+        articlePo.setAuthorName(userDataBo.getName());
+        articleMapper.update(articlePo,
+                new QueryWrapper<ArticlePo>()
+                .lambda().eq(ArticlePo::getAuthorId, tokenPo.getAccount()));
         return RespondResult.success();
     }
 

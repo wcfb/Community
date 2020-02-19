@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发表文章</title>
+    <link rel="stylesheet" href="./css/element/element.css">
+    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/wirteArticle.css">
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/element/element.js"></script>
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/markdown/markdown.min.js"></script>
+    <script src="./js/utils/common.js"></script>
+    <script src="./js/axios/axios.js"></script>
+    <script src="./js/utils/axiosUtil.js"></script>
+    <script src="./js/utils/common.js"></script>
+    <script src="./js/writeArticle.js"></script>
+</head>
+<body>
+<div id="app">
+    <div style="font-size: 20px;height: 30px; text-align: center;color: #009689; font-weight: bold;">开始你的创作</div>
+
+    <div style="margin-left: 100px; margin-right: 100px;">
+        <img src="./img/image.png" data-toggle="modal" data-target="#myModal" style="float: left;"/>
+        <img src="./img/publish.png" style="float: right;" data-toggle="modal" onclick="save()"/>
+        <div style="margin-left: 100px; margin-right: 100px;">
+            <input id="title" name="title" type="text" class="form-control" placeholder="标题名">
+        </div>
+    </div>
+
+    <!-- 输入部分和显示部分 -->
+    <div id="area">
+        <table style="height: 100%; width: 100%;">
+            <tr style="height: 100%; width: 100%;">
+                <td style="height: 100%; width: 100%;">
+                    <textarea name="" id="md-area" style="height: 100%; width: 100%;" onkeyup=mdSwitch();
+                              placeholder="文章编辑使用markdown语法">
+                    </textarea>
+                </td>
+<!--                <td v-if="preview">-->
+<!--                    <div id="show-area" style="height:900px;" class="clearfix"></div>-->
+<!--                </td>-->
+            </tr>
+        </table>
+    </div>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加图片
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input id="file" type="file" name="file"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="saveImg()" data-dismiss="modal">
+                        添加图片
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./js/utils/axiosUtil.js"></script>
+<script src="./js/utils/common.js"></script>
+<script src="./js/writeArticle.js"></script>
+</html>

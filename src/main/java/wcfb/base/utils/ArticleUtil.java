@@ -21,7 +21,7 @@ public class ArticleUtil {
         if (start>articleShowMaxWord){
             return articleContent.substring(0, articleShowMaxWord);
         }
-        if (start<=0){
+        if (start<0){
             return articleContent.substring(0, articleShowMaxWord);
         }
         int end = articleContent.substring(start).indexOf(")");

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发现</title>
+    <link rel="stylesheet" href="./css/element/element.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/find.css">
+    <link rel="stylesheet" href="./css/js/find.css">
+    <link rel="stylesheet" href="./css/js/find1.css">
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/element/element.js"></script>
+    <script src="./js/axios/axios.js"></script>
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/utils/axiosUtil.js"></script>
+    <script src="./js/utils/common.js"></script>
+    <script src="./js/search.js"></script>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-main>
+            <template>
+                <div id="list-container">
+                    <!-- 文章列表模块 -->
+                    <ul id="articleList" class="note-list">
+                    </ul>
+                    <el-button id="load" type="info" size="medium" round @click="loadArticle">加载更多</el-button>
+                </div>
+            </template>
+        </el-main>
+        <el-aside width="400px">
+            <template>
+                <!-- 推荐作者 -->
+                <div id="aside" class="recommended-authors">
+                    <div class="title">
+                        <span>推荐作者</span>
+                        <a class="page-change" @click="loadAuthor">
+                            <i class="iconfont ic-search-change" style="transform: rotate(0deg);"></i>
+                            换一批
+                        </a>
+                    </div>
+                    <ul id="authorList" class="list">
+                    </ul>
+                </div>
+            </template>
+        </el-aside>
+    </el-container>
+</div>
+</body>
+<script src="./js/search.js"></script>
+</html>
